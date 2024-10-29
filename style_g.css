@@ -1,0 +1,336 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Top Navigation */
+.top-nav {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    animation: colorChange 5s infinite alternate;
+}
+
+/* Side Navigation */
+.side-nav {
+    width: 200px; /* Set the width to match the canvas */
+    position: fixed; /* Keep it fixed to the side */
+    top: 0;
+    left: 0;
+    height: 100%; /* Full-height */
+    background-color: #333; /* Customize as needed */
+    padding: 10px;
+    color: white;
+    z-index: 1;
+}
+
+#sidenavCanvas {
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+}
+
+
+.side-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-nav ul li {
+    margin-bottom: 10px;
+}
+
+.side-nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Center Form Container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 50px); /* Adjust height based on top nav */
+    margin-left: 220px; /* Adjust margin to accommodate side nav */
+}
+
+/* Form Styling */
+form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form label, form input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="radio"], form input[type="checkbox"] {
+    display: inline-block;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Ensure the layout stays within a wrapper to avoid affecting other elements */
+.content-wrapper {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    margin-top: 20px; /* Add some space from top to avoid overlapping with the form */
+    padding: 20px; /* Padding around to prevent touching edges */
+    max-width: 100%; /* Prevent the content from overflowing outside the page width */
+}
+
+/* Two-column layout with CSS grid */
+.content-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-left: 220px; /* This should be size of the left nav plus some padding */
+    position: relative;
+}
+
+.content-solution div, .content-solution canvas {
+    width: 100%; /* Make sure everything is the same width */
+    height: auto;
+    background: transparent;
+}
+
+/* Left column contains the timer and image */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between timer and image */
+    width: 100%; /* Ensure it takes up available space */
+    margin-left: 40px;
+}
+
+.right-column {
+    display: flex;
+    justify-content: center; /* Center the animation within the right column */
+    align-items: center;
+    width: 100%; /* Ensure it takes up available space */
+}
+
+/* Timer box styling */
+.box {
+    padding: 20px;
+    border: 2px solid black;
+    background-color: #f9f9f9;
+    width: 40%; /* Make the timer box responsive */
+    display: none;
+    max-width: 500px; /* Set a max width to prevent it from stretching too much */
+    position: relative;
+    z-index: 10; /* Ensure it's above the sidenav */
+}
+
+.animation {
+    width: 50%;
+    display: none; /* Initially hidden */
+}
+
+#box, #textBox1, #textBox2, #finalTextBox, .hidden img {
+    text-align: center;
+    padding: 10px;
+    border: 2px solid #ccc;
+    background-color: #f4f4f4;
+}
+
+#finalTextBox {
+    grid-column: span 2; /* Make final box span both columns */
+}
+
+#fourierCanvas {
+    width: 400px;
+    height: 400px;
+    display: none;
+    margin: 0;
+    padding: 0;
+  /*  border: 2px solid #000; */
+}
+
+/* Add outlines to visualize element boxes */
+#box, #fourierCanvas, .form-container {
+    outline: 2px dashed red; /* Shows element boundaries */
+}
+
+/* Add a background to the form to make it stand out */
+.form-container {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+/* Add spacing between questions */
+.form-container label {
+    display: block; /* Ensure labels stack properly */
+    margin-bottom: 10px; /* Space below each question label */
+}
+
+.form-container div {
+    margin-bottom: 20px; /* Space below each group of radio buttons/checkboxes */
+}
+
+
+.imageContainer {
+    align-items: flex-start;
+    height: 300;
+    width: 300;
+}
+
+.hidden {
+    display: none; /* Initially hidden */
+}
+
+#timer {
+    font-size: 2em;
+    color: #ff0000;
+}
+
+#imageContainer {
+    display: none;
+    margin-top: 20px;
+}
+
+img {
+    width: 100%; /* Ensure images fill their containers */
+    height: auto;
+}
+
+#imageContainer img {
+    width: 300px;
+    max-width: 100%;
+}
+
+canvas {
+    background-color: transparent;
+}
+
+canvas.animation {
+    border: 2px solid black;
+    background-color: white;
+    width: 300px;
+    height: 300px;
+}
+
+/* Ensure radio buttons for "5 + 5" question appear inline */
+.radio-group {
+    display: flex;
+    gap: 10px; /* Space between radio buttons */
+    align-items: center;
+}
+
+/* Ensure checkboxes for the "animals" question appear inline */
+.checkbox-group {
+    display: flex;
+    gap: 10px; /* Space between checkboxes */
+    align-items: center;
+}
+
+/* Ensure radio buttons for "5 + 5" question appear inline with more space */
+.radio-group label {
+    margin-right: 15px; /* Space between each label and radio button */
+}
+
+/* Ensure checkboxes for the "animals" question appear inline with more space */
+.checkbox-group label {
+    margin-right: 15px; /* Space between each label and checkbox */
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+    .content-solution {
+        grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+        margin-left: 0; /* Remove margin on smaller screens */
+    }
+
+    .box, .animation {
+        width: 100%; /* Full width on small screens */
+    }
+}
+
+/* Animation keyframes */
+@keyframes colorChange {
+    0% {
+        background-color: #3498db; /* First color (blue) */
+    }
+    100% {
+        background-color: #e74c3c; /* Second color (red) */
+    }
+}
+
+.final-text-box {
+    text-align: center; /* Center align text */
+    margin-top: 20px; /* Space above */
+}
+
+.large-text {
+    font-size: 64px; /* Adjust as needed */
+    font-weight: bold; /* Make it bold */
+}
+
+.small-text {
+    font-size: 16px; /* Adjust as needed */
+}
+
+#button-container {
+    display: flex; /* Use flexbox to position buttons */
+    justify-content: space-around; /* Evenly space buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+
+#button-container-two {
+    display: flex; /* Use flexbox to position buttons */
+    justify-content: space-around; /* Evenly space buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+
+#yes-button {
+    padding: 10px 20px; /* Button padding */
+    font-size: 20px; /* Adjust button font size */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+}
+
+#yes-button-two {
+    padding: 10px 20px; /* Button padding */
+    font-size: 20px; /* Adjust button font size */
+    background-color: #16cdd7; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+}
+
+#yes-button:hover {
+    background-color: #012d03; /* Darker green on hover */
+}
+
+#yes-button-two:hover {
+    background-color: #4709b2; /* Darker green on hover */
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Top secret</title>
+        <link rel="stylesheet" href="style_g.css">
+    </head>
+    <body>
+        <div class="top-nav">
+            <h1>Questionnare form</h1>
+        </div>
+
+        <div class="side-nav">
+            <ul>
+                <li><a href="@">Home</a></li>
+                <li><a href="@">Contact</a></li>
+            </ul>
+            <!-- Add canvas for the animation here-->
+            <canvas id="sidenavCanvas"></canvas>
+        </div>
+
+        <div class="form-container">
+            <div id="form-container"></div>
+        </div>
+        <div class="content-wrapper">
+            <div class="content-solution">
+                    <div id="box" class="box">
+                        <p>x=Mert gondoltam rád.</p>
+                        <h2>WAIT FOR IT PLS</h2>
+                        <div id="timer">30</div>
+                    </div>
+                    <canvas class="animation" id="fourierCanvas"></canvas>
+                    
+                    <!-- Image container, initially hidden -->
+                    <div id="imageContainer1" class="hidden">
+                        <img id="timerImage" src="Abra_1.jpg" alt="Timer ended" />
+                    </div>
+                    
+                    <div id="textBox1" class="hidden">
+                        <p>My problem is that I really have feelings towards you what could be called love. I like your personality, like the tiny details of your behaviour.</p>
+                    </div>
+
+                    <div id="textBox2" class="hidden">
+                        <p>BÓNUSZ: Ami Chatgpt-vel kimaradt májusban...</p>
+                    </div>
+
+                    <div id="imageContainer2" class="hidden">
+                        <img id="timerImage2" src="Chatgpt1.png" alt="Another Image" />
+                    </div>
+
+                    <div id="imageContainer3" class="hidden">
+                        <img id="timerImage3" src="Chatgpt2.png" alt="Third Image" />
+                    </div>
+                
+                    <div id="imageContainer4" class="hidden">
+                        <img id="timerImage4" src="Chatgpt3.png" alt="Fourth Image" />
+                    </div>
+                
+                    <div id="finalTextBox" class="hidden" style="grid-column: span 2;">
+                        <p class="large-text">GAME OVER</p>
+                        <p class="small-text">Thank you for playing with me.
+                            OR Do you want to CONTINUE?</p>
+                    </div>
+                    <div id="button-container" class="hidden">
+                        <button id="yes-button" class="hidden">Yes!</button>
+                    </div>
+                    <div id="button-container-two" class="hidden">
+                        <button id="yes-button-two" class="hidden">Yes!</button>
+                    </div>
+        
+                    
+            </div>
+        </div>
+        <script src="script_g.js"></script>
+    </body>
+</html>
