@@ -23,7 +23,7 @@ body {
 
 /* Side Navigation */
 .side-nav {
-    width: 200px; /* Set the width to match the canvas */
+    width: 20vw; /* Set the width to match the canvas */
     position: fixed; /* Keep it fixed to the side */
     top: 0;
     left: 0;
@@ -38,7 +38,7 @@ body {
     display: block;
     margin-top: 20px;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 
@@ -267,7 +267,7 @@ canvas.animation {
     }
 
     .box, .animation {
-        width: 100%; /* Full width on small screens */
+        width: 70%; /* Full width on small screens */
     }
 }
 
