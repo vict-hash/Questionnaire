@@ -124,6 +124,7 @@ function createform() {
 }
 
 const correctNames = ["Ujvári Kamilla", "Kamilla Ujvári", "Ujvari Kamilla", "Kamilla Ujvari"]
+const secondInputCorrectValues = ["ujvári", "ujvari"];
 let hasExecuted = false;
 
 function checkInput() {
@@ -136,20 +137,59 @@ function checkInput() {
     const isCorrect = correctNames.map(name => name.toLowerCase()).includes(input.toLowerCase());
 
     if (isCorrect) {
-        hasExecuted = true;
-        document.getElementById('result').innerText = 'OH te vagy az Kamilla.';
-        //Show the box with the text on the left
-        document.getElementById('box').style.display = 'block';
-
-        // Show and start the animation on the right
-        const canvas = document.getElementById('fourierCanvas');
-        canvas.style.display = 'block';
-        startFourierAnimation(canvas);
-        startTimer();
-
+        executeCommands();
+    } else if (input.toLowerCase() === "kamilla") {
+        createSecondInputField();
     } else {
         document.getElementById('result').innerText = 'Thank you for your responses.';
     }
+}
+
+// Function to create the second input field dynamically
+function createSecondInputField() {
+    const formContainer = document.getElementById('form-container');
+    const existingSecondInput = document.getElementById('second-input');
+    if (existingSecondInput) return; // Prevent duplicate input fields
+
+    const secondInputLabel = document.createElement('label');
+    secondInputLabel.innerText = "Milyen Kamilla?";
+    formContainer.appendChild(secondInputLabel);
+
+    const secondInput = document.createElement('input');
+    secondInput.type = 'text';
+    secondInput.id = 'second-input';
+    formContainer.appendChild(secondInput);
+
+    const secondSubmitButton = document.createElement('button');
+    secondSubmitButton.type = 'button';
+    secondSubmitButton.innerText = 'Submit';
+    secondSubmitButton.onclick = checkSecondInput; // Attach function to validate second input
+    formContainer.appendChild(secondSubmitButton);
+}
+
+// Function to validate the second input
+function checkSecondInput() {
+    const secondInput = document.getElementById('second-input').value.trim();
+
+    // Check if the entered value is correct
+    if (secondInputCorrectValues.includes(secondInput.toLowerCase())) {
+        executeCommands(); // Execute commands if the second value is correct
+    } else {
+        document.getElementById('result').innerText = 'Thank you for your responses.';
+    }
+}
+
+function executeCommands() {
+    hasExecuted = true; // Mark as executed
+    document.getElementById('result').innerText = 'OH te vagy az Kamilla.';
+    // Show the box with the text on the left
+    document.getElementById('box').style.display = 'block';
+
+    // Show and start the animation on the right
+    const canvas = document.getElementById('fourierCanvas');
+    canvas.style.display = 'block';
+    startFourierAnimation(canvas);
+    startTimer();
 }
 
 function startTimer() {
